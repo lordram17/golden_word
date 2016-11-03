@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161022170800) do
+ActiveRecord::Schema.define(version: 20161028115851) do
 
   create_table "assessments", force: :cascade do |t|
     t.string   "name"
@@ -46,16 +46,26 @@ ActiveRecord::Schema.define(version: 20161022170800) do
   create_table "students", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.string   "password_digest"
+    t.string   "password"
+    t.string   "remember_token"
   end
+
+  add_index "students", ["remember_token"], name: "index_students_on_remember_token"
 
   create_table "teachers", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.string   "password_digest"
+    t.string   "password"
+    t.string   "remember_token"
   end
+
+  add_index "teachers", ["remember_token"], name: "index_teachers_on_remember_token"
 
   create_table "videos", force: :cascade do |t|
     t.string   "name"
